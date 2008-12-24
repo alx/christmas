@@ -38,7 +38,7 @@ function isItChristmas($time = null) {
   
   $isit = (strftime("%m/%d", $local_time) == $christmas);
   
-  return $isit ? yes($location) : "NO";
+  return $isit ? yes($location) : no($location);
 }
 
 // used to produce a country code for the JS to work with
@@ -97,81 +97,102 @@ function yes($location) {
   
   // This array is IsItChristmas' sole IP
   $codes = array(
-    "US" => "YES", // United States
-    "FR" => "OUI", // France
-    "NL" => "JA", // Netherlands
-    "ZA" => "JA", // South Africa
-    "ES" => "SÍ", // Spain
-    "UK" => "YES", // United Kingdom
-    "CA" => "YES/OUI", // Canada (English/French)
-    "PL" => "TAK", // Poland
-    "SE" => "JA", // Sweden
-    "LT" => "TAIP", // Lithuania
-    "DE" => "JA", // Germany
-    "IE" => "IS EA", // Ireland
-    "AU" => "YES", // Australia
-    "JP" => "HAI", // Japan
-    "NO" => "JA", // Norway
-    "IT" => "SÌ", // Italy
-    "HU" => "IGEN", // Hungary
-    "DK" => "JA", // Denmark
-    "FI" => "KYLLÄ", // Finland
-    "BE" => "JA", // Belgium
-    "CL" => "SÍ", // Chile
-    "MX" => "SÍ", // Mexico
-    "NZ" => "YES", // New Zealand
-    "AT" => "JA", // Austria
-    "RO" => "DA", // Romania
-    "CH" => "JA/OUI", // Switzerland (German/French)
-    "PT" => "SIM", // Portugal
-    "BR" => "SIM", // Brazil
     "AR" => "SÍ", // Argentina
-    "EE" => "JAA", // Estonia
-    "HR" => "DA", // Croatia
-    "CN" => "SHI", // China (Mandarin)
-    "IN" => "HAJI", // India
-    "SG" => "YA", // Singapore
-    "PH" => "ÓO", // Phillipines
-    "IL" => "KEN", // Israel
-    "KR" => "NE", // Korea
-    "CZ" => "ANO", // Czech Republic
-    "SK" => "ÁNO", // Slovakia
-    "GR" => "NE", // Greece
-    "IS" => "JÁ", // Iceland
-    "VE" => "SÍ", // Venezuela
-    "SI" => "DA", // Slovenia
-    "TH" => "CHAI", // Thailand
-    "LV" => "JA", // Latvia
-    "RU" => "DA", // Russia
-    "HK" => "HAI", // Hong Kong (Cantonese)
-    "TR" => "EVET", // Turkey
-    "MY" => "YA", // Malaysia
-    "PR" => "SÍ", // Puerto Rico
-    "CO" => "SÍ", // Colombia
-    "EC" => "SÍ", // Ecuador
-    "PE" => "SÍ", // Peru
-    "CR" => "SÍ", // Costa Rica
-    "UY" => "SÍ", // Uruguay
-    "CY" => "NE", // Cyprus
-    "GT" => "SÍ", // Guatemala
-    "SV" => "SÍ", // El Salvador
-    "DO" => "SÍ", // Dominican Republic
-    "BM" => "SIM", // Bermuda
-    "PA" => "SÍ", // Panama
-    "BO" => "SÍ", // Bolivia
-    "TT" => "SÍ", // Trinidad & Tobago
-    "DM" => "WÍ", // Dominica (Creole)
-    "HT" => "WÍ", // Haiti (Creole)
-    "JM" => "YES", // Jamaica
+    "AT" => "JA", // Austria
+    "AU" => "YES", // Australia
     "BB" => "YES", // Barbado
+    "BE" => "JA", // Belgium
+    "BM" => "SIM", // Bermuda
+    "BO" => "SÍ", // Bolivia
+    "BR" => "SIM", // Brazil
     "BZ" => "YES", // Belize
+    "CA" => "YES/OUI", // Canada (English/French)
+    "CH" => "JA/OUI", // Switzerland (German/French)
+    "CL" => "SÍ", // Chile
+    "CN" => "SHI", // China (Mandarin)
+    "CO" => "SÍ", // Colombia
+    "CR" => "SÍ", // Costa Rica
+    "CY" => "NE", // Cyprus
+    "CZ" => "ANO", // Czech Republic
+    "DE" => "JA", // Germany
+    "DK" => "JA", // Denmark
+    "DM" => "WÍ", // Dominica (Creole)
+    "DO" => "SÍ", // Dominican Republic
+    "EC" => "SÍ", // Ecuador
+    "EE" => "JAA", // Estonia
+    "ES" => "SÍ", // Spain
+    "FI" => "KYLLÄ", // Finland
+    "FR" => "OUI", // France
+    "GR" => "NE", // Greece
+    "GT" => "SÍ", // Guatemala
+    "HK" => "HAI", // Hong Kong (Cantonese)
+    "HR" => "DA", // Croatia
+    "HT" => "WÍ", // Haiti (Creole)
+    "HU" => "IGEN", // Hungary
+    "IE" => "IS EA", // Ireland
+    "IL" => "KEN", // Israel
+    "IN" => "HAJI", // India
+    "IS" => "JÁ", // Iceland
+    "IT" => "SÌ", // Italy
+    "JM" => "YES", // Jamaica
+    "JP" => "HAI", // Japan
+    "KR" => "NE", // Korea
     "KY" => "YES", // Cayman Islands
+    "LT" => "TAIP", // Lithuania
+    "LV" => "JA", // Latvia
+    "MX" => "SÍ", // Mexico
+    "MY" => "YA", // Malaysia
     "NI" => "SÍ", // Nicaragua
+    "NL" => "JA", // Netherlands
+    "NO" => "JA", // Norway
+    "NZ" => "YES", // New Zealand
+    "PA" => "SÍ", // Panama
+    "PE" => "SÍ", // Peru
+    "PH" => "ÓO", // Phillipines
+    "PL" => "TAK", // Poland
+    "PR" => "SÍ", // Puerto Rico
+    "PT" => "SIM", // Portugal
     "PY" => "HÊE", // Paraguay
+    "RO" => "DA", // Romania
+    "RU" => "DA", // Russia
+    "SE" => "JA", // Sweden
+    "SG" => "YA", // Singapore
+    "SI" => "DA", // Slovenia
+    "SK" => "ÁNO", // Slovakia
+    "SV" => "SÍ", // El Salvador
+    "TH" => "CHAI", // Thailand
+    "TR" => "EVET", // Turkey
+    "TT" => "SÍ", // Trinidad & Tobago
+    "UK" => "YES", // United Kingdom
+    "US" => "YES", // United States
+    "UY" => "SÍ", // Uruguay
+    "VE" => "SÍ", // Venezuela
+    "ZA" => "JA", // South Africa
   );
 
   if (!$codes[$code])
     return "YES";
+  else
+    return $codes[$code];
+}
+
+
+function no($location) {
+  if (!$location || !$location["countryCode"] || $location["countryName"] == "(Unknown Country?)")
+    return "No";
+    
+  $code = $location["countryCode"];
+  
+  // This array is IsItChristmas' sole IP
+  $codes = array(
+    "ES" => "No", // Spain
+    "FR" => "Non", // France
+    "UK" => "No", // United Kingdom
+    "US" => "No", // United States
+  );
+
+  if (!$codes[$code])
+    return "No";
   else
     return $codes[$code];
 }

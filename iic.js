@@ -11,7 +11,7 @@ function isItChristmas(countryCode) {
   if (isChristmas)
     return yes(countryCode);
   else
-    return "NO";
+    return no(countryCode);
 }
 
 
@@ -94,3 +94,15 @@ function yes(countryCode) {
 
   return codes[countryCode] || "YES";
 }
+
+// This array is IsItChristmas' sole IP
+function no(countryCode) {
+
+  var codes = {
+    "FR": "Non", // France
+    "US": "No", // United States
+  }
+
+  return codes[countryCode] || "No";
+}
+
